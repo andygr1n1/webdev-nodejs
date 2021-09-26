@@ -5,19 +5,25 @@ import methodOverride from 'method-override'
 import { createPath } from './helpers/create_path'
 import { contactsRouter } from './routes/contact-routes'
 import { postRouter } from './routes/post-routes'
-import { apiPostRouter } from './routes/api-post-routes';
+import { apiPostRouter } from './routes/api-post-routes'
+import dotenv from 'dotenv'
+
+import chalk from 'chalk'
+const errorMsg = chalk.bgKeyword('white').redBright
+const sussessMsg = chalk.bgKeyword('green').white
+
+dotenv.config()
 const server = express()
-const db =
-    'mongodb+srv://andy_grini:Zxc123569013@cluster0.ch1cm.mongodb.net/db_nodets_webdev?retryWrites=true&w=majority'
+
+const db: string = process.env.MONGO_URL || ''
+const port = process.env.PORT || 7654
 
 mongoose
     .connect(db)
-    .then(() => console.log('connected to db'))
-    .catch((err) => console.log('err:::', err))
+    .then(() => console.log(sussessMsg('Successfully connected to db')))
+    .catch((err) => console.log(errorMsg('err:::', err)))
 
 server.set('view engine', 'ejs')
-
-const PORT = 7777
 
 server.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
@@ -41,8 +47,8 @@ server.use((req, res) => {
     res.status(404).render(createPath('error'), { title })
 })
 
-server.listen(PORT, () => {
-    console.log(`listening on port ${PORT}`)
+server.listen(port, () => {
+    console.log(sussessMsg(`listening on port ${port}`))
 })
 
 // send | sendFile
