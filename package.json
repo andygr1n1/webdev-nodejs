@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon src/app.ts",
-        "start:server": "nodemon src/server.ts",
+        "dev": "nodemon src/server.ts",
         "lint": "eslint . --ext .ts"
     },
     "keywords": [],
