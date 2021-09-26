@@ -5,9 +5,9 @@
         <%- include('./partials/nav.ejs') %>
         <h1>Contacts:</h1>
         <ul>
-            <% if (contacts.length) { %> <% contacts.forEach(({ link, service }) => { %>
+            <% if (contacts.length) { %> <% contacts.forEach(({ link, name }) => { %>
             <li>
-                <a href="<%= link %>"><%= service%></a>
+                <a href="<%= link %>"><%= name%></a>
             </li>
             <% }) %> <% } %>
         </ul>
