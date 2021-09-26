@@ -5,6 +5,7 @@ import methodOverride from 'method-override'
 import { createPath } from './helpers/create_path'
 import { contactsRouter } from './routes/contact-routes'
 import { postRouter } from './routes/post-routes'
+import { apiPostRouter } from './routes/api-post-routes';
 const server = express()
 const db =
     'mongodb+srv://andy_grini:Zxc123569013@cluster0.ch1cm.mongodb.net/db_nodets_webdev?retryWrites=true&w=majority'
@@ -28,6 +29,7 @@ server.use(methodOverride('_method'))
 
 server.use(postRouter)
 server.use(contactsRouter)
+server.use(apiPostRouter)
 
 server.get('/', (req, res) => {
     const title = 'Home'
